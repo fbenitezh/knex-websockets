@@ -55,6 +55,7 @@ io.on("connection", async (socket) => {
   });
 
   socket.on("messageFront", async (data) => {
+    data.date = new Date().toLocaleString();
     await mensajeModel.cargarMensaje(data);
     const msjs = await mensajeModel.getMensajes();
     io.sockets.emit("messageBack", msjs);
